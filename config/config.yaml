@@ -1,0 +1,12 @@
+turret_control:
+  ros__parameters:
+    lower_angle_deg: -150.0
+    upper_angle_deg:  150.0
+    pub_period_s: 0.01
+    ctrl_period_s: 0.004
+    pins:
+      - 17
+      - 18
+      - 27
+      - 22
+    step_count_per_rot: 4096
