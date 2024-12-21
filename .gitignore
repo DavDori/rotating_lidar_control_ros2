@@ -30,3 +30,4 @@
 *.exe
 *.out
 *.app
+/.pre-commit-config.yaml
