@@ -1,9 +1,9 @@
 turret_control:
   ros__parameters:
-    lower_angle_deg: -150.0
-    upper_angle_deg:  150.0
-    pub_period_s: 0.01
-    ctrl_period_s: 0.004
+    lower_angle_deg: -10.0
+    upper_angle_deg:  10.0
+    pub_period_s: 0.02
+    ctrl_period_s: 0.01
     pins:
       - 17
       - 18
