@@ -60,6 +60,7 @@ class Controller(Node):
 
         self.timer_pub_ = self.create_timer(pub_period_s, self.feedbackCallback)
         self.timer_ctrl_ = self.create_timer(ctrl_period_s, self.controlCallback)
+        self.printParameters()
 
     def setup(self):
         # setting up
@@ -132,7 +133,24 @@ class Controller(Node):
             GPIO.output(self.pins_[i], self.step_seq_[self.cmd_][i])
         behavior()
 
+    def printParameters(self):
+        pub_period_s = self.get_parameter("pub_period_s").get_parameter_value().double_value
+        ctrl_period_s = self.get_parameter("ctrl_period_s").get_parameter_value().double_value
+        pins = self.get_parameter("pins").get_parameter_value().integer_array_value
+        step_per_rot = self.get_parameter("step_count_per_rot").get_parameter_value().integer_value
+        lb_deg = self.get_parameter("lower_angle_deg").get_parameter_value().double_value
+        ub_deg = self.get_parameter("upper_angle_deg").get_parameter_value().double_value
 
+        self.get_logger().info(
+            f"Parameters:\n"
+            f"  pub_period_s: {pub_period_s}\n"
+            f"  ctrl_period_s: {ctrl_period_s}\n"
+            f"  pins: {list(pins)}\n"
+            f"  step_count_per_rot: {step_per_rot}\n"
+            f"  lower_angle_deg: {lb_deg}\n"
+            f"  upper_angle_deg: {ub_deg}"
+        )
+        
 def main(args=None):
     rclpy.init(args=args, signal_handler_options=SignalHandlerOptions.NO)
 
